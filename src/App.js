@@ -58,7 +58,7 @@ function App() {
                   <img
                     key={type}
                     className="type-img"
-                    src={`/type/${type}.png`}
+                    src={`${process.env.PUBLIC_URL}/type/${type}.png`}
                     alt={type}
                   />
                 ))}
