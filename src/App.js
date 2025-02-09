@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import "./style.css";
+import { SyncLoader } from "react-spinners";
 
 function App() {
   const [pokemonList, setPokemonList] = useState([]);
@@ -19,9 +20,9 @@ function App() {
         });
       }
       setPokemonList(pokemonData);
+      setLoading(false);
     }
     fetchData();
-    setLoading(false);
   }, []);
 
   function handleClick(pokemon) {
@@ -35,7 +36,10 @@ function App() {
   return (
     <div>
       {loading ? (
-        <h1>loading</h1>
+        <div>
+          <h2>이미지 로딩중입니다.</h2>
+          <SyncLoader />
+        </div>
       ) : (
         <div className="container">
           <h1 className="title">Pokemon List</h1>
