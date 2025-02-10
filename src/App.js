@@ -8,19 +8,30 @@ function App() {
 
   useEffect(() => {
     async function fetchData() {
-      const pokemonData = [];
-      for (let i = 1; i < 1026; i++) {
-        let response = await fetch(`https://pokeapi.co/api/v2/pokemon/${i}`);
-        let data = await response.json();
-        pokemonData.push({
+      setLoading(true);
+      try {
+        const pokemonPromises = Array.from({ length: 1025 }, (_, i) =>
+          fetch(`https://pokeapi.co/api/v2/pokemon/${i + 1}`).then((res) =>
+            res.json()
+          )
+        );
+
+        const results = await Promise.all(pokemonPromises);
+
+        const pokemonData = results.map((data, index) => ({
           name: data.species.name,
-          no: i,
+          no: index + 1,
           type: data.types.map((t) => t.type.name),
-        });
+        }));
+
+        setPokemonList(pokemonData);
+      } catch (error) {
+        console.error("데이터 로딩 오류:", error);
+      } finally {
+        setLoading(false);
       }
-      setPokemonList(pokemonData);
-      setLoading(false);
     }
+
     fetchData();
   }, []);
 
