@@ -5,7 +5,6 @@ import { SyncLoader } from "react-spinners";
 function App() {
   const [pokemonList, setPokemonList] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [selectedPokemon, setSelectedPokemon] = useState(null);
 
   useEffect(() => {
     async function fetchData() {
@@ -25,10 +24,6 @@ function App() {
     fetchData();
   }, []);
 
-  function handleClick(pokemon) {
-    setSelectedPokemon(pokemon);
-  }
-
   function errorImg(event, pokemon) {
     event.target.src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.no}.png`;
   }
@@ -45,11 +40,7 @@ function App() {
           <h1 className="title">Pokemon List</h1>
           <div className="pokemon-grid">
             {pokemonList.map((pokemon) => (
-              <div
-                key={pokemon.no}
-                className="pokemon-card"
-                onClick={() => handleClick(pokemon)}
-              >
+              <div key={pokemon.no} className="pokemon-card">
                 <img
                   src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/${pokemon.no}.gif`}
                   alt={pokemon.name}
