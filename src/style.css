@@ -47,8 +47,7 @@
 
 .type-img {
   margin: 2px;
-  height: 120%;
-  width: 120%;
+  height: 30px;
 }
 
 .pokemon-name {
@@ -142,12 +141,6 @@
   font-size: 16px;
   color: #555;
   margin-top: 10px;
-}
-
-.type-img {
-  width: 50px;
-  height: auto;
-  margin: 5px;
 }
 
 button {
