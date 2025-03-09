@@ -13,7 +13,7 @@ function App() {
 
   async function fetchData() {
     let temple = [];
-    for (let i = fetchNum; i < fetchNum + 21; i++) {
+    for (let i = fetchNum; i < fetchNum + 12; i++) {
       // 1 ~ 21
       let response = await fetch(`https://pokeapi.co/api/v2/pokemon/${i}`);
       let data = await response.json();
@@ -26,7 +26,7 @@ function App() {
       };
       temple.push(pokemonData);
     }
-    setFetchNum((prev) => prev + 21);
+    setFetchNum((prev) => prev + 12);
     setPokemonList((prevList) => [...prevList, ...temple]);
   }
 
